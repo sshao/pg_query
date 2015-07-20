@@ -5,7 +5,7 @@ class PgQuery
     parsetree, stderr = _raw_parse(query)
 
     begin
-      parsetree = JSON.parse(parsetree, max_nesting: 1000)
+      parsetree = JSON.parse(parsetree, :max_nesting => 1000)
     rescue JSON::ParserError
       raise ParseError.new('Failed to parse JSON', -1)
     end
