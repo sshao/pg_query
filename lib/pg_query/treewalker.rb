@@ -16,7 +16,7 @@ class PgQuery
           exprs << [v, location] unless v.nil?
         end
       elsif expr.is_a?(Array)
-        exprs += expr.map.with_index { |e, idx| [e, parent_location + [idx]] }
+        exprs += expr.each_with_index.map { |e, idx| [e, parent_location + [idx]] }
       end
 
       break if exprs.empty?
