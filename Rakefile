@@ -1,20 +1,16 @@
 require 'bundler/gem_tasks'
 require 'rake/extensiontask'
 require 'rspec/core/rake_task'
-require 'rubocop/rake_task'
 
 Rake::ExtensionTask.new 'pg_query' do |ext|
   ext.lib_dir = 'lib/pg_query'
 end
 
 RSpec::Core::RakeTask.new
-RuboCop::RakeTask.new
 
-task spec: :compile
+task :spec => :compile
 
-task default: [:lint, :spec]
-task test: :spec
-task lint: :rubocop
+task :test => :spec
 
 task :clean do
   FileUtils.rm_rf File.join(File.dirname(__FILE__), 'tmp/')
