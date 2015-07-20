@@ -29,7 +29,7 @@ PG_OBJS = {
 # Download & compile PostgreSQL if we don't have it yet
 #
 # Note: We intentionally use a patched version that fixes bugs in outfuncs.c
-unless Dir.exist?(pgdir)
+unless File.exist?(pgdir)
   unless File.exist?("#{workdir}/postgres.tar.gz")
     File.open("#{workdir}/postgres.tar.gz", 'wb') do |target_file|
       open('https://codeload.github.com/pganalyze/postgres/tar.gz/pg_query', 'rb') do |read_file|
