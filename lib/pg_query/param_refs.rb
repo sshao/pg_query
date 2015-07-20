@@ -29,8 +29,7 @@ class PgQuery
       end
     end
 
-    results.sort_by! { |r| r['location'] }
-    results
+    results.sort_by { |r| r['location'] }
   end
 
   private

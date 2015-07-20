@@ -23,12 +23,12 @@ class PgQuery
       elsif k == 'targetList' && v.is_a?(Array)
         # Remove SELECT target list names & ignore order
         v.each { |v2| v2['RESTARGET']['name'] = nil if v2['RESTARGET'] } # Remove names
-        v.sort_by!(&:to_s)
-        expr[k] = v
+        sorted_v = v.sort_by(&:to_s)
+        expr[k] = sorted_v
       elsif k == 'cols' && v.is_a?(Array)
         # Ignore INSERT cols order
-        v.sort_by!(&:to_s)
-        expr[k] = v
+        sorted_v = v.sort_by(&:to_s)
+        expr[k] = sorted_v
       end
     end
 
