@@ -33,8 +33,9 @@ class PgQuery
   def deep_dup(obj)
     case obj
     when Hash
-      obj.each_with_object(obj.dup) do |(key, value), hash|
+      obj.inject(obj.dup) do |hash, (key, value)|
         hash[deep_dup(key)] = deep_dup(value)
+        hash
       end
     when Array
       obj.map { |it| deep_dup(it) }
